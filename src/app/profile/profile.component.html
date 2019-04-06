@@ -1,40 +1,36 @@
-
 <body>
-<header>
-  <h2><a href="#"><i ></i> Patient Medical Record</a></h2>
-</header>
+<div class="sideNav">
 
-<div class="cover">
+    <div>
+        <label for="address"><b>address</b></label>
+            <label id="address" >0*20000000000</label>
+    </div>
+    <div>
+        <label for="nationalID"><b>NationalID</b></label>
+        <label  id="nationalID" >{{getMRA.getNationalID()}}</label>
+    </div>
+    <div>
+        <label for="name"><b>Name</b></label>
+        <a  name="name" >{{getMRA.getName()}}</a>
+    </div>
+    <div>
+        <label for="phoneNumber"><b>PhoneNumber</b></label>
+        <label id="phoneNumber" >05555555</label>
+    </div>
+    <div>
+        <label for="data"><b>Date</b></label>
+        <label id="data" >{{getMRA.getDate()}}</label>
+    </div>
+    <div>
+        <label for="gender"><b>Gender</b></label>
+        <a id="gender" >Male</a>
+    </div>
 
-
-  <table>
-    <tr>
-      <td >Address</td>
-      <td >{{getMRA.getAddress()}}</td>
-    </tr>
-    <tr>
-      <td>Name</td>
-      <td>{{getMRA.getName()}}</td>
-    </tr>
-
-    <tr>
-      <td>National ID</td>
-      <td>{{getMRA.getNationalID()}}</td>
-    </tr>
-
-    <tr>
-      <td>Date</td>
-      <td>{{getMRA.getDate()}}</td>
-    </tr>
-    <tr>
-      <td>PhoneNumber</td>
-      <td>{{getMRA.getPhoneNumber()}}</td>
-    </tr>
-  </table>
 </div>
 
+<div class="content">
+    <p> Healthcare medical records have a long history of being inefficient, expensive and vulnerable. Currently, Each hospital has its own copy of a patient’s medical record. Every time a patient visits a hospital, the</p>
+</div>
+
+
 </body>
-
-
-
-
