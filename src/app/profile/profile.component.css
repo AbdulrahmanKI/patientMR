@@ -1,17 +1,131 @@
+
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 16px 18px;
+    text-decoration: none;
+    margin: 0px;
+    font-size: 23px;
+}
+
+
+
+ul.topnav li a.active {background-color: #af6087;}
+
+ul.topnav li.right {float: right;}
+
+
+
+
 body{
     display: inline-flex;
-    color: #ff0042;
+    margin: 0;
+    width: 100%;
+    height: 72.2vh;
+
 }
 
 .sideNav{
     border-right: 1px solid gray ;
     padding: 5px;
+    margin: 0px;
+    background-color: lightgrey;
+    width: 200px;
+    height: 100%;
+
 }
 
 label{
     display: block;
+    border: 1px solid white;
+    padding: 2px;
+}
+
+label.labelLeft{
+    padding: 5px;
+    font-size: 20px;
 }
 
 a{
     display: inline-block;
+}
+
+.content{
+    display: inline-flex;
+    margin: 5px;
+    height: 190px;
+    border-bottom: 1px solid gray;
+    width: 100%;
+}
+
+
+/* On mouse-over, add a deeper shadow */
+#Prescription:hover , #Diagnosis:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+label.cont ,a{
+    display: block;
+    margin: 15px;
+    font-size: 20px;
+}
+
+
+#Prescription {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-image: url("~src/assets/pres.png") ;
+    background-size: 100px;
+}
+#Diagnosis {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-image: url("~src/assets/diagnosis.png") ;
+    background-size: 100px;
+}
+
+#surgery {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-image: url("~src/assets/surgery.png") ;
+    background-size: 100px;
+}
+
+#labTest {
+     width: 100px;
+     height: 100px;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     border-radius: 12px;
+     background-image: url("~src/assets/labTest.png") ;
+     background-size: 100px;
+ }
+
+#bloodDonation {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-image: url("~src/assets/blood.png") ;
+    background-size: 100px;
+}
+
+div.sideNavLabel{
+
 }

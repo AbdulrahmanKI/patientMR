@@ -1,35 +1,71 @@
+
+<ul class="topnav">
+    <li><a class="active" href="#">Patient Medical Record</a></li>
+
+    <li class="right"><a href="#about">About</a></li>
+</ul>
+
 <body>
 <div class="sideNav">
 
-    <div>
-        <label for="address"><b>address</b></label>
-            <label id="address" >0*20000000000</label>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="address"><b>address</b></label>
+            <a id="address" >0*20000000000</a>
     </div>
-    <div>
-        <label for="nationalID"><b>NationalID</b></label>
-        <label  id="nationalID" >{{getMRA.getNationalID()}}</label>
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="nationalID"><b>NationalID</b></label>
+        <a  id="nationalID" >{{getMRA.getNationalID()}}</a>
     </div>
-    <div>
-        <label for="name"><b>Name</b></label>
-        <a  name="name" >{{getMRA.getName()}}</a>
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="name"><b>Name</b></label>
+        <a  id="name" >{{getMRA.getName()}}</a>
     </div>
-    <div>
-        <label for="phoneNumber"><b>PhoneNumber</b></label>
-        <label id="phoneNumber" >05555555</label>
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="phoneNumber"><b>PhoneNumber</b></label>
+        <a id="phoneNumber" >05555555</a>
     </div>
-    <div>
-        <label for="data"><b>Date</b></label>
-        <label id="data" >{{getMRA.getDate()}}</label>
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="data"><b>Date</b></label>
+        <a id="data" >{{getMRA.getDate()}}</a>
     </div>
-    <div>
-        <label for="gender"><b>Gender</b></label>
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="gender"><b>Gender</b></label>
         <a id="gender" >Male</a>
     </div>
 
 </div>
 
 <div class="content">
-    <p> Healthcare medical records have a long history of being inefficient, expensive and vulnerable. Currently, Each hospital has its own copy of a patient’s medical record. Every time a patient visits a hospital, the</p>
+    <div>
+   <label class="cont" for="Prescription">Prescription</label>
+    <a id="Prescription" > </a>
+    </div>
+
+    <div>
+    <label class="cont" for="Diagnosis">Diagnosis</label>
+    <a id="Diagnosis"></a>
+    </div>
+
+    <div>
+        <label class="cont" for="surgery">Surgery</label>
+        <a id="surgery"></a>
+    </div>
+
+    <div>
+        <label class="cont" for="labTest">LaboratoryTest</label>
+        <a id="labTest"></a>
+    </div>
+
+    <div>
+        <label class="cont" for="bloodDonation">BloodDonation</label>
+        <a id="bloodDonation"></a>
+    </div>
+
 </div>
 
 
