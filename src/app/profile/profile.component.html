@@ -1,18 +1,17 @@
 
-<ul class="topnav">
+
+
+
+<ul class="topnav" >
     <li><a class="active" href="#">Patient Medical Record</a></li>
 
-    <li class="right"><a href="#about">About</a></li>
+    <li class="right"><a style="font-size: 18px">Your Address: {{getMRA.getAddress()}}</a></li>
 </ul>
+
 
 <body>
 <div class="sideNav">
 
-    <div class="sideNavLabel">
-        <label class="labelLeft" for="address"><b>address</b></label>
-            <a id="address" >0*20000000000</a>
-    </div>
-    <hr>
     <div class="sideNavLabel">
         <label class="labelLeft" for="nationalID"><b>NationalID</b></label>
         <a  id="nationalID" >{{getMRA.getNationalID()}}</a>
@@ -25,7 +24,7 @@
     <hr>
     <div class="sideNavLabel">
         <label class="labelLeft" for="phoneNumber"><b>PhoneNumber</b></label>
-        <a id="phoneNumber" >05555555</a>
+        <a id="phoneNumber" >{{getMRA.getPhoneNumber()}}</a>
     </div>
     <hr>
     <div class="sideNavLabel">
@@ -35,9 +34,14 @@
     <hr>
     <div class="sideNavLabel">
         <label class="labelLeft" for="gender"><b>Gender</b></label>
-        <a id="gender" >Male</a>
+        <a id="gender" >{{getMRA.getGender()}}</a>
     </div>
-
+    <hr>
+    <div class="sideNavLabel">
+        <label class="labelLeft" for="bloodType"><b>BloodType</b></label>
+        <a id="bloodType" >{{getMRA.getBloodeType()}}</a>
+    </div>
+    <hr>
 </div>
 
 <div class="content">

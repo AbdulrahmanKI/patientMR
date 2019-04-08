@@ -12,7 +12,7 @@ export class ProfileComponent implements OnInit {
   constructor(private getMRA: GetMRAService) { }
 
     ngOnInit() {
-    console.log('My ass');
+    console.log('hello');
        this.getMRA.getMedicalRecordAddress(123456789);
       // console.log(this.getMRA.getD());
      //console.log();

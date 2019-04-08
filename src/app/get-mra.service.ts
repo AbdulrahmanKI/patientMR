@@ -11,7 +11,9 @@ export class GetMRAService {
   private P_nationalID;
   private P_phone_number;
   private P_birth_date;
-  constructor() { }
+  private P_gender;
+  private P_bloodType;
+    constructor() { }
 
     getMedicalRecordAddress(id: number) {
 
@@ -304,7 +306,7 @@ export class GetMRAService {
     ];
 
     // Medical Record System Contract P_Address
-    const address = '0xb14889d951b0033705f3c9ce8b52a469096b2da6';
+    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {
@@ -773,6 +775,22 @@ export class GetMRAService {
       else
         console.log(error);
     });
+
+      //Hospital Address  /Fetch Patient phoneNumber
+      mycontract.methods.gender.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+          if(!error)
+              this.P_gender = result;
+          else
+              console.log(error);
+      });
+
+      //Hospital Address  /Fetch Patient phoneNumber
+      mycontract.methods.bloodType.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+          if(!error)
+              this.P_bloodType = result;
+          else
+              console.log(error);
+      });
   }
 
   getDate(){
@@ -793,5 +811,12 @@ export class GetMRAService {
 
   getAddress(){
     return this.P_Address;
+  }
+
+  getGender(){
+        return this.P_gender ;
+  }
+  getBloodeType(){
+        return this.P_bloodType ;
   }
 }
