@@ -62,7 +62,7 @@
 
     <div>
         <label class="cont" for="labTest">LaboratoryTest</label>
-        <a id="labTest"></a>
+        <a (click)="displayLabTest()" id="labTest"></a>
     </div>
 
     <div>
@@ -76,6 +76,8 @@
     </div>
 
 </div>
+
+
         <table id="bloodDonationTable" *ngIf="flagBloodDonation" >
             <tr>
                 <th>ID</th>
@@ -117,7 +119,7 @@
         <table id="SurgeryTable" *ngIf="flagSurgery" >
             <tr>
                 <th>ID</th>
-                <th>hospitalName</th>
+                <th>Hospital</th>
                 <th>Main Doctor</th>
                 <th>surgeryName</th>
                 <th>duration in minutes</th>
@@ -137,7 +139,54 @@
             </tr>
         </table>
 
-    <img src="https://image-hasher-wadahesam.c9users.io/storage/files/29dc7a2e4c2b8a6cba6764783c0f4218.jpg">
+        <table id="RadiologyTable" *ngIf="flagRadiology" >
+            <tr>
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Radiologist</th>
+                <th>Radiology Type</th>
+                <th>description</th>
+                <th>Date</th>
+                <th>Photo</th>
+
+
+            </tr>
+            <tr *ngFor="let e of getMRA.P_Radiologies;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.P_Radiologies[i]['hospitalName']}}</td>
+                <td>{{getMRA.P_Radiologies[i]['radiologist']}}</td>
+                <td>{{getMRA.P_Radiologies[i]['radiologyType']}}</td>
+                <td>{{getMRA.P_Radiologies[i]['description']}}</td>
+                <td>{{getMRA.P_Radiologies[i]['date'] *1000| date }}</td>
+                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_Radiologies[i]['fileHash']}}" target="_blank">Preview</a></td>
+            </tr>
+        </table>
+
+        <table id="LabTestTable" *ngIf="flagLabTest" >
+            <tr>
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Laboratory Worker</th>
+                <th>Test Type</th>
+                <th>Laboratory Test Description</th>
+                <th>Date</th>
+                <th>Photo</th>
+
+
+            </tr>
+            <tr *ngFor="let e of getMRA.P_LabTest;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.P_LabTest[i]['hospitalName']}}</td>
+                <td>{{getMRA.P_LabTest[i]['laboratoryWorkerName']}}</td>
+                <td>{{getMRA.P_LabTest[i]['testType']}}</td>
+                <td>{{getMRA.P_LabTest[i]['laboratoryTestDescription']}}</td>
+                <td>{{getMRA.P_LabTest[i]['date'] *1000| date }}</td>
+                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
+            </tr>
+        </table>
+
+
+    <!--<img src="https://image-hasher-wadahesam.c9users.io/storage/files/29dc7a2e4c2b8a6cba6764783c0f4218.jpg">-->
 
 
 

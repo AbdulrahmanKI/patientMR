@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
     flagSurgery:boolean = false;
     flagDrugPrescribtion:boolean = false;
     flagRadiology:boolean = false;
+    flagLabTest:boolean = false;
 
 
     displayBloodDonation(){
@@ -34,6 +35,7 @@ export class ProfileComponent implements OnInit {
         this.flagSurgery = false;
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
+        this.flagLabTest = false;
     }
 
     displayDiagnosises(){
@@ -43,33 +45,48 @@ export class ProfileComponent implements OnInit {
         this.flagSurgery = false;
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
+        this.flagLabTest = false;
     }
 
     displaySurgerises(){
         this.getMRA.getSurgeries();
+        this.flagSurgery = true;
         this.flagDiagnosis = false;
         this.flagBloodDonation =false;
-        this.flagSurgery = true;
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
+        this.flagLabTest = false;
     }
 
     displayRadiology(){
         this.getMRA.getRadiology();
+        this.flagRadiology = true;
         this.flagDiagnosis = false;
         this.flagBloodDonation =false;
         this.flagSurgery = false;
         this.flagDrugPrescribtion = false;
-        this.flagRadiology = true;
+        this.flagLabTest = false;
     }
 
     displayDrugPrescribtion(){
-
+        this.getMRA.getDrugPrescribtion()
+        this.flagDrugPrescribtion = true;
         this.flagDiagnosis = false;
         this.flagBloodDonation =false;
         this.flagSurgery = false;
-        this.flagDrugPrescribtion = true;
         this.flagRadiology = false;
+        this.flagLabTest = false;
+    }
+
+    displayLabTest(){
+        this.getMRA.getLabTest();
+        this.flagLabTest = true;
+        this.flagDiagnosis = false;
+        this.flagBloodDonation =false;
+        this.flagSurgery = false;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = false;
+
     }
 
 

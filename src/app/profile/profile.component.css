@@ -214,3 +214,60 @@ label.cont{
     background-color: #FC7F59;
     color: white;
 }
+
+#RadiologyTable{
+    display: inline-flex;
+    margin: 58px 5px 0 290px ;
+    height: 190px;
+    width: 75%;
+
+    border-collapse: collapse;
+}
+
+#RadiologyTable td, #RadiologyTable th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+#RadiologyTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #659b97;
+    color: white;
+}
+
+#LabTestTable{
+    display: inline-flex;
+    margin: 58px 5px 0 290px ;
+    height: 190px;
+    width: 75%;
+
+    border-collapse: collapse;
+}
+
+#LabTestTable td, #LabTestTable th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+#LabTestTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #F4B459;
+    color: white;
+}
+
+
+a.preview:link,a.preview:visited {
+    background-color: #cc0000;
+    color: white;
+    padding: 7px 12px;
+    text-align: center;
+    text-decoration: none;
+    font-family: sans-serif;
+}
+
+a.preview:hover {
+    background-color: #e30000;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
