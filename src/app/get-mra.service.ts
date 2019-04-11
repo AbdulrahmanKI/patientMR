@@ -11,6 +11,8 @@ import {DateFormatter} from '@angular/common/src/pipes/deprecated/intl';
 })
 export class GetMRAService {
 
+  private Hospital_Address = '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341';
+
   public nID;
 
   private P_Address;
@@ -26,6 +28,11 @@ export class GetMRAService {
   private diagnosisesCount;
   public P_surgeries = [];
   private surgeriesCount;
+  public P_drugPrescribtions = [];
+  private drugPrescribtionsCount;
+  public P_Radiologies = [];
+  private radiologiesCount;
+
     constructor() { }
 
     getMedicalRecordAddress(id: number) {
@@ -319,7 +326,7 @@ export class GetMRAService {
     ];
 
     // Medical Record System Contract P_Address
-    const address = '0x8eb87a89b62cfb3e3d911bffeab2761e99b6c253';
+    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {
@@ -329,7 +336,7 @@ export class GetMRAService {
 
 
     // Hospital P_Address
-      mycontract.methods.getMedicalRecord(id).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+      mycontract.methods.getMedicalRecord(id).call({from: this.Hospital_Address},(error , result) => {
        if(!error){
          this.P_Address = result;
          this.getPatientMedicalRecordData(this.P_Address);
@@ -1300,7 +1307,7 @@ export class GetMRAService {
     });
 
     //Hospital Address / Fetch Patient Name
-    mycontract.methods.name.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+    mycontract.methods.name.call({from: this.Hospital_Address},(error , result) => {
       if(!error)
         this.P_name = result;
       else
@@ -1490,6 +1497,96 @@ export class GetMRAService {
       },
       {
         "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "drugPrescribtions",
+        "outputs": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "doctorName",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "name": "drugList",
+            "type": "string"
+          },
+          {
+            "name": "drugListCount",
+            "type": "uint256"
+          },
+          {
+            "name": "isCorrectionFor",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "radiologies",
+        "outputs": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "radiologist",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "name": "radiologyType",
+            "type": "string"
+          },
+          {
+            "name": "description",
+            "type": "string"
+          },
+          {
+            "name": "isCorrectionFor",
+            "type": "string"
+          },
+          {
+            "name": "hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "fileHash",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": true,
         "inputs": [],
         "name": "laboratoryTestsCount",
         "outputs": [
@@ -1674,6 +1771,32 @@ export class GetMRAService {
             "type": "string"
           },
           {
+            "name": "_drugList",
+            "type": "string"
+          },
+          {
+            "name": "_isCorrectionFor",
+            "type": "string"
+          }
+        ],
+        "name": "addDrugPrescribtion",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "_doctorName",
+            "type": "string"
+          },
+          {
             "name": "_diognosisDescription",
             "type": "string"
           },
@@ -1709,6 +1832,40 @@ export class GetMRAService {
         ],
         "payable": false,
         "stateMutability": "view",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "_radiologistName",
+            "type": "string"
+          },
+          {
+            "name": "_radiologyType",
+            "type": "string"
+          },
+          {
+            "name": "_description",
+            "type": "string"
+          },
+          {
+            "name": "_fileHash",
+            "type": "string"
+          },
+          {
+            "name": "_isCorrectionFor",
+            "type": "string"
+          }
+        ],
+        "name": "addRadiology",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
         "type": "function"
       },
       {
@@ -1754,6 +1911,40 @@ export class GetMRAService {
           }
         ],
         "name": "addBloodDonation",
+        "outputs": [],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+      },
+      {
+        "constant": false,
+        "inputs": [
+          {
+            "name": "_hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "_laboratoryWorkerName",
+            "type": "string"
+          },
+          {
+            "name": "_testType",
+            "type": "string"
+          },
+          {
+            "name": "_laboratoryTestDescription",
+            "type": "string"
+          },
+          {
+            "name": "_fileHash",
+            "type": "string"
+          },
+          {
+            "name": "_isCorrectionFor",
+            "type": "string"
+          }
+        ],
+        "name": "addLaboratoryTest",
         "outputs": [],
         "payable": false,
         "stateMutability": "nonpayable",
@@ -1853,6 +2044,53 @@ export class GetMRAService {
         "type": "function"
       },
       {
+        "constant": true,
+        "inputs": [
+          {
+            "name": "",
+            "type": "uint256"
+          }
+        ],
+        "name": "laboratoryTests",
+        "outputs": [
+          {
+            "name": "id",
+            "type": "uint256"
+          },
+          {
+            "name": "hospitalName",
+            "type": "string"
+          },
+          {
+            "name": "laboratoryWorkerName",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "type": "uint256"
+          },
+          {
+            "name": "testType",
+            "type": "string"
+          },
+          {
+            "name": "laboratoryTestDescription",
+            "type": "string"
+          },
+          {
+            "name": "testHash",
+            "type": "string"
+          },
+          {
+            "name": "isCorrectionFor",
+            "type": "string"
+          }
+        ],
+        "payable": false,
+        "stateMutability": "view",
+        "type": "function"
+      },
+      {
         "constant": false,
         "inputs": [
           {
@@ -1936,7 +2174,7 @@ export class GetMRAService {
       console.log(this.BloodDonationCount+" aaaaas")
     //Fetch Patient BloodDonation
       for (let i =0 ; i< this.BloodDonationCount ; i++){
-        mycontract.methods.bloodDonations(i).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.bloodDonations(i).call({from: this.Hospital_Address},(error , result) => {
           if(!error)
             this.P_BloodDonation[i] =  result;
           else
@@ -2061,6 +2299,96 @@ export class GetMRAService {
           },
           {
             "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "drugPrescribtions",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "doctorName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "drugList",
+                "type": "string"
+              },
+              {
+                "name": "drugListCount",
+                "type": "uint256"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "radiologies",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologist",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "fileHash",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
             "inputs": [],
             "name": "laboratoryTestsCount",
             "outputs": [
@@ -2245,6 +2573,32 @@ export class GetMRAService {
                 "type": "string"
               },
               {
+                "name": "_drugList",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addDrugPrescribtion",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_doctorName",
+                "type": "string"
+              },
+              {
                 "name": "_diognosisDescription",
                 "type": "string"
               },
@@ -2280,6 +2634,40 @@ export class GetMRAService {
             ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologistName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "_description",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addRadiology",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
           },
           {
@@ -2325,6 +2713,40 @@ export class GetMRAService {
               }
             ],
             "name": "addBloodDonation",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "_testType",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addLaboratoryTest",
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
@@ -2424,6 +2846,53 @@ export class GetMRAService {
             "type": "function"
           },
           {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "laboratoryTests",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "testType",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "testHash",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "constant": false,
             "inputs": [
               {
@@ -2502,7 +2971,7 @@ export class GetMRAService {
 
 
         //Hospital Address  /Fetch Patient BloodDonation
-        mycontract.methods.bloodDonationsCount.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.bloodDonationsCount.call({from: this.Hospital_Address},(error , result) => {
           if(!error)
             // console.log( result);
             this.BloodDonationCount =  result;
@@ -2624,6 +3093,96 @@ export class GetMRAService {
           },
           {
             "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "drugPrescribtions",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "doctorName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "drugList",
+                "type": "string"
+              },
+              {
+                "name": "drugListCount",
+                "type": "uint256"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "radiologies",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologist",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "fileHash",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
             "inputs": [],
             "name": "laboratoryTestsCount",
             "outputs": [
@@ -2808,6 +3367,32 @@ export class GetMRAService {
                 "type": "string"
               },
               {
+                "name": "_drugList",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addDrugPrescribtion",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_doctorName",
+                "type": "string"
+              },
+              {
                 "name": "_diognosisDescription",
                 "type": "string"
               },
@@ -2843,6 +3428,40 @@ export class GetMRAService {
             ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologistName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "_description",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addRadiology",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
           },
           {
@@ -2888,6 +3507,40 @@ export class GetMRAService {
               }
             ],
             "name": "addBloodDonation",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "_testType",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addLaboratoryTest",
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
@@ -2987,6 +3640,53 @@ export class GetMRAService {
             "type": "function"
           },
           {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "laboratoryTests",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "testType",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "testHash",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "constant": false,
             "inputs": [
               {
@@ -3069,7 +3769,7 @@ export class GetMRAService {
 
         //Fetch Patient BloodDonation
         for (let i =0 ; i< this.diagnosisesCount ; i++){
-          mycontract.methods.diagnosises(i).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+          mycontract.methods.diagnosises(i).call({from: this.Hospital_Address},(error , result) => {
             if(!error)
               this.P_diagnosises[i] =  result;
             else
@@ -3195,6 +3895,96 @@ export class GetMRAService {
           },
           {
             "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "drugPrescribtions",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "doctorName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "drugList",
+                "type": "string"
+              },
+              {
+                "name": "drugListCount",
+                "type": "uint256"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "radiologies",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologist",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "fileHash",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
             "inputs": [],
             "name": "laboratoryTestsCount",
             "outputs": [
@@ -3379,6 +4169,32 @@ export class GetMRAService {
                 "type": "string"
               },
               {
+                "name": "_drugList",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addDrugPrescribtion",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_doctorName",
+                "type": "string"
+              },
+              {
                 "name": "_diognosisDescription",
                 "type": "string"
               },
@@ -3414,6 +4230,40 @@ export class GetMRAService {
             ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologistName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "_description",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addRadiology",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
           },
           {
@@ -3459,6 +4309,40 @@ export class GetMRAService {
               }
             ],
             "name": "addBloodDonation",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "_testType",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addLaboratoryTest",
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
@@ -3558,6 +4442,53 @@ export class GetMRAService {
             "type": "function"
           },
           {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "laboratoryTests",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "testType",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "testHash",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "constant": false,
             "inputs": [
               {
@@ -3636,7 +4567,7 @@ export class GetMRAService {
 
 
         //Hospital Address  /Fetch Patient diagnosisesCount
-        mycontract.methods.diagnosisesCount.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.diagnosisesCount.call({from: this.Hospital_Address},(error , result) => {
           if(!error)
           // console.log( result);
             this.diagnosisesCount =  result;
@@ -3758,6 +4689,96 @@ export class GetMRAService {
         },
         {
           "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "drugPrescribtions",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "doctorName",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "drugList",
+              "type": "string"
+            },
+            {
+              "name": "drugListCount",
+              "type": "uint256"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "radiologies",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "radiologist",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "radiologyType",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "fileHash",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
           "inputs": [],
           "name": "laboratoryTestsCount",
           "outputs": [
@@ -3942,6 +4963,32 @@ export class GetMRAService {
               "type": "string"
             },
             {
+              "name": "_drugList",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addDrugPrescribtion",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_doctorName",
+              "type": "string"
+            },
+            {
               "name": "_diognosisDescription",
               "type": "string"
             },
@@ -3977,6 +5024,40 @@ export class GetMRAService {
           ],
           "payable": false,
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_radiologistName",
+              "type": "string"
+            },
+            {
+              "name": "_radiologyType",
+              "type": "string"
+            },
+            {
+              "name": "_description",
+              "type": "string"
+            },
+            {
+              "name": "_fileHash",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addRadiology",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -4022,6 +5103,40 @@ export class GetMRAService {
             }
           ],
           "name": "addBloodDonation",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_laboratoryWorkerName",
+              "type": "string"
+            },
+            {
+              "name": "_testType",
+              "type": "string"
+            },
+            {
+              "name": "_laboratoryTestDescription",
+              "type": "string"
+            },
+            {
+              "name": "_fileHash",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addLaboratoryTest",
           "outputs": [],
           "payable": false,
           "stateMutability": "nonpayable",
@@ -4121,6 +5236,53 @@ export class GetMRAService {
           "type": "function"
         },
         {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "laboratoryTests",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "laboratoryWorkerName",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "testType",
+              "type": "string"
+            },
+            {
+              "name": "laboratoryTestDescription",
+              "type": "string"
+            },
+            {
+              "name": "testHash",
+              "type": "string"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "constant": false,
           "inputs": [
             {
@@ -4203,7 +5365,7 @@ export class GetMRAService {
 
       //Fetch Patient BloodDonation
       for (let i =0 ; i< this.surgeriesCount ; i++){
-        mycontract.methods.surgeries(i).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.surgeries(i).call({from: this.Hospital_Address},(error , result) => {
           if(!error)
             this.P_surgeries[i] =  result;
           else
@@ -4325,6 +5487,96 @@ export class GetMRAService {
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "drugPrescribtions",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "doctorName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "drugList",
+                "type": "string"
+              },
+              {
+                "name": "drugListCount",
+                "type": "uint256"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "radiologies",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologist",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "fileHash",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
             "type": "function"
           },
           {
@@ -4513,6 +5765,32 @@ export class GetMRAService {
                 "type": "string"
               },
               {
+                "name": "_drugList",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addDrugPrescribtion",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_doctorName",
+                "type": "string"
+              },
+              {
                 "name": "_diognosisDescription",
                 "type": "string"
               },
@@ -4548,6 +5826,40 @@ export class GetMRAService {
             ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologistName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "_description",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addRadiology",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
           },
           {
@@ -4593,6 +5905,40 @@ export class GetMRAService {
               }
             ],
             "name": "addBloodDonation",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "_testType",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addLaboratoryTest",
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
@@ -4692,6 +6038,53 @@ export class GetMRAService {
             "type": "function"
           },
           {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "laboratoryTests",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "testType",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "testHash",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "constant": false,
             "inputs": [
               {
@@ -4770,7 +6163,7 @@ export class GetMRAService {
 
 
         //Hospital Address  /Fetch Patient diagnosisesCount
-        mycontract.methods.surgeriesCount.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.surgeriesCount.call({from: this.Hospital_Address},(error , result) => {
           if(!error)
           // console.log( result);
             this.surgeriesCount =  result;
@@ -4779,8 +6172,8 @@ export class GetMRAService {
         });
       }
 
-  //get Surgery Data
-    async getSurgeries(){
+  //get Radiology Data
+    async getRadiology(){
       const ABI_PatientMR = [
         {
           "constant": true,
@@ -4892,6 +6285,96 @@ export class GetMRAService {
         },
         {
           "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "drugPrescribtions",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "doctorName",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "drugList",
+              "type": "string"
+            },
+            {
+              "name": "drugListCount",
+              "type": "uint256"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "radiologies",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "radiologist",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "radiologyType",
+              "type": "string"
+            },
+            {
+              "name": "description",
+              "type": "string"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "fileHash",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": true,
           "inputs": [],
           "name": "laboratoryTestsCount",
           "outputs": [
@@ -5076,6 +6559,32 @@ export class GetMRAService {
               "type": "string"
             },
             {
+              "name": "_drugList",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addDrugPrescribtion",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_doctorName",
+              "type": "string"
+            },
+            {
               "name": "_diognosisDescription",
               "type": "string"
             },
@@ -5111,6 +6620,40 @@ export class GetMRAService {
           ],
           "payable": false,
           "stateMutability": "view",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_radiologistName",
+              "type": "string"
+            },
+            {
+              "name": "_radiologyType",
+              "type": "string"
+            },
+            {
+              "name": "_description",
+              "type": "string"
+            },
+            {
+              "name": "_fileHash",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addRadiology",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
           "type": "function"
         },
         {
@@ -5156,6 +6699,40 @@ export class GetMRAService {
             }
           ],
           "name": "addBloodDonation",
+          "outputs": [],
+          "payable": false,
+          "stateMutability": "nonpayable",
+          "type": "function"
+        },
+        {
+          "constant": false,
+          "inputs": [
+            {
+              "name": "_hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "_laboratoryWorkerName",
+              "type": "string"
+            },
+            {
+              "name": "_testType",
+              "type": "string"
+            },
+            {
+              "name": "_laboratoryTestDescription",
+              "type": "string"
+            },
+            {
+              "name": "_fileHash",
+              "type": "string"
+            },
+            {
+              "name": "_isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "name": "addLaboratoryTest",
           "outputs": [],
           "payable": false,
           "stateMutability": "nonpayable",
@@ -5255,6 +6832,53 @@ export class GetMRAService {
           "type": "function"
         },
         {
+          "constant": true,
+          "inputs": [
+            {
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "name": "laboratoryTests",
+          "outputs": [
+            {
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "name": "hospitalName",
+              "type": "string"
+            },
+            {
+              "name": "laboratoryWorkerName",
+              "type": "string"
+            },
+            {
+              "name": "date",
+              "type": "uint256"
+            },
+            {
+              "name": "testType",
+              "type": "string"
+            },
+            {
+              "name": "laboratoryTestDescription",
+              "type": "string"
+            },
+            {
+              "name": "testHash",
+              "type": "string"
+            },
+            {
+              "name": "isCorrectionFor",
+              "type": "string"
+            }
+          ],
+          "payable": false,
+          "stateMutability": "view",
+          "type": "function"
+        },
+        {
           "constant": false,
           "inputs": [
             {
@@ -5330,16 +6954,16 @@ export class GetMRAService {
         gasPrice: '100000000'
       });
 
-      this.getSurgeriesCount();
+      this.getRadiologyCount();
       await new Promise(resolve => setTimeout(
           ()=>resolve(), 300));
 
 
       //Fetch Patient BloodDonation
-      for (let i =0 ; i< this.surgeriesCount ; i++){
-        mycontract.methods.surgeries(i).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+      for (let i =0 ; i< this.radiologiesCount ; i++){
+        mycontract.methods.radiologies(i).call({from: this.Hospital_Address},(error , result) => {
           if(!error)
-            this.P_surgeries[i] =  result;
+            this.P_Radiologies[i] =  result;
           else
             console.log(error);
         });
@@ -5347,11 +6971,11 @@ export class GetMRAService {
       await new Promise(resolve => setTimeout(
           ()=>resolve(), 300));
 
-      console.log(this.P_surgeries[0])
+      console.log(this.P_Radiologies[0])
 
     }
 
-      getSurgeriesCount(){
+      getRadiologyCount(){
         const ABI_PatientMR = [
           {
             "constant": true,
@@ -5459,6 +7083,96 @@ export class GetMRAService {
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "drugPrescribtions",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "doctorName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "drugList",
+                "type": "string"
+              },
+              {
+                "name": "drugListCount",
+                "type": "uint256"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "radiologies",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologist",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "description",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "fileHash",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
             "type": "function"
           },
           {
@@ -5647,6 +7361,32 @@ export class GetMRAService {
                 "type": "string"
               },
               {
+                "name": "_drugList",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addDrugPrescribtion",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_doctorName",
+                "type": "string"
+              },
+              {
                 "name": "_diognosisDescription",
                 "type": "string"
               },
@@ -5682,6 +7422,40 @@ export class GetMRAService {
             ],
             "payable": false,
             "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologistName",
+                "type": "string"
+              },
+              {
+                "name": "_radiologyType",
+                "type": "string"
+              },
+              {
+                "name": "_description",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addRadiology",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
             "type": "function"
           },
           {
@@ -5727,6 +7501,40 @@ export class GetMRAService {
               }
             ],
             "name": "addBloodDonation",
+            "outputs": [],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function"
+          },
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "_testType",
+                "type": "string"
+              },
+              {
+                "name": "_laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "_fileHash",
+                "type": "string"
+              },
+              {
+                "name": "_isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "name": "addLaboratoryTest",
             "outputs": [],
             "payable": false,
             "stateMutability": "nonpayable",
@@ -5826,6 +7634,53 @@ export class GetMRAService {
             "type": "function"
           },
           {
+            "constant": true,
+            "inputs": [
+              {
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "name": "laboratoryTests",
+            "outputs": [
+              {
+                "name": "id",
+                "type": "uint256"
+              },
+              {
+                "name": "hospitalName",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryWorkerName",
+                "type": "string"
+              },
+              {
+                "name": "date",
+                "type": "uint256"
+              },
+              {
+                "name": "testType",
+                "type": "string"
+              },
+              {
+                "name": "laboratoryTestDescription",
+                "type": "string"
+              },
+              {
+                "name": "testHash",
+                "type": "string"
+              },
+              {
+                "name": "isCorrectionFor",
+                "type": "string"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
             "constant": false,
             "inputs": [
               {
@@ -5904,10 +7759,10 @@ export class GetMRAService {
 
 
         //Hospital Address  /Fetch Patient diagnosisesCount
-        mycontract.methods.surgeriesCount.call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'},(error , result) => {
+        mycontract.methods.radiologiesCount.call({from: this.Hospital_Address},(error , result) => {
           if(!error)
           // console.log( result);
-            this.surgeriesCount =  result;
+            this.radiologiesCount =  result;
           else
             console.log(error);
         });

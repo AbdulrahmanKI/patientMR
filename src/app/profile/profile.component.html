@@ -29,7 +29,7 @@
     <hr>
     <div class="sideNavLabel">
         <label class="labelLeft" for="data"><b>Date</b></label>
-        <a id="data" >{{getMRA.getDate()}}</a>
+        <a id="data" >{{getMRA.getDate()*1000|date}}</a>
     </div>
     <hr>
     <div class="sideNavLabel">
@@ -47,7 +47,7 @@
 <div class="content">
     <div>
    <label class="cont" for="Prescription">Prescription</label>
-    <a id="Prescription" > </a>
+    <a id="Prescription" (click)="displayDrugPrescribtion()"> </a>
     </div>
 
     <div>
@@ -72,7 +72,7 @@
 
     <div>
         <label class="cont" for="radiology">Radiology</label>
-        <a  id="radiology"></a>
+        <a (click)="displayRadiology()" id="radiology"></a>
     </div>
 
 </div>
@@ -83,7 +83,7 @@
                 <th>Doctor</th>
                 <th>DonationType</th>
                 <th>Date</th>
-                <th>Amount</th>
+                <th>Amount (L)</th>
 
             </tr>
             <tr *ngFor="let e of getMRA.P_BloodDonation;let i = index">
@@ -92,7 +92,7 @@
                 <td>{{getMRA.P_BloodDonation[i]['doctorName']}}</td>
                 <td>{{getMRA.P_BloodDonation[i]['donationType']}}</td>
                 <td >{{getMRA.P_BloodDonation[i]['date'] *1000| date }}</td>
-                <td>{{getMRA.P_BloodDonation[i]['amount'] }}</td>
+                <td>{{getMRA.P_BloodDonation[i]['amount'] /1000 }}</td>
             </tr>
         </table>
 
@@ -136,6 +136,8 @@
                   <td>{{getMRA.P_surgeries[i]['date'] *1000| date }}</td>
             </tr>
         </table>
+
+    <img src="https://image-hasher-wadahesam.c9users.io/storage/files/29dc7a2e4c2b8a6cba6764783c0f4218.jpg">
 
 
 

@@ -13,6 +13,7 @@ import {GetMRAService} from '../get-mra.service';
 })
 export class NavComponent implements OnInit {
 
+    private Hospital_Address = '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341';
 
   constructor(
       private alert: AlertsService,
@@ -326,7 +327,7 @@ export class NavComponent implements OnInit {
     ];
 
     // Medical Record System Contract Address
-    const address = '0x8eb87a89b62cfb3e3d911bffeab2761e99b6c253';
+    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {
@@ -337,7 +338,7 @@ export class NavComponent implements OnInit {
 
     // Hospital Address
     if (this.form.Id != null) {
-      mycontract.methods.checkMedicalRecord(this.form.Id).call({from: '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341'} , (error , result) => {
+      mycontract.methods.checkMedicalRecord(this.form.Id).call({from: this.Hospital_Address} , (error , result) => {
           if (!error) {
           console.log(error);
           console.log(result);

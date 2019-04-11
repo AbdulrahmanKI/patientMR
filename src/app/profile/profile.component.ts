@@ -23,12 +23,17 @@ export class ProfileComponent implements OnInit {
     flagBloodDonation:boolean = false;
     flagDiagnosis:boolean = false;
     flagSurgery:boolean = false;
+    flagDrugPrescribtion:boolean = false;
+    flagRadiology:boolean = false;
+
 
     displayBloodDonation(){
         this.getMRA.getBloodDonation()
         this.flagBloodDonation = true;
         this.flagDiagnosis = false;
         this.flagSurgery = false;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = false;
     }
 
     displayDiagnosises(){
@@ -36,6 +41,8 @@ export class ProfileComponent implements OnInit {
         this.flagDiagnosis = true;
         this.flagBloodDonation =false;
         this.flagSurgery = false;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = false;
     }
 
     displaySurgerises(){
@@ -43,6 +50,26 @@ export class ProfileComponent implements OnInit {
         this.flagDiagnosis = false;
         this.flagBloodDonation =false;
         this.flagSurgery = true;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = false;
+    }
+
+    displayRadiology(){
+        this.getMRA.getRadiology();
+        this.flagDiagnosis = false;
+        this.flagBloodDonation =false;
+        this.flagSurgery = false;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = true;
+    }
+
+    displayDrugPrescribtion(){
+
+        this.flagDiagnosis = false;
+        this.flagBloodDonation =false;
+        this.flagSurgery = false;
+        this.flagDrugPrescribtion = true;
+        this.flagRadiology = false;
     }
 
 
