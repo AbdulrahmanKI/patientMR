@@ -27,6 +27,8 @@ export class NavComponent implements OnInit {
   };
 
 
+
+
   ngOnInit() {
   }
 
@@ -324,7 +326,7 @@ export class NavComponent implements OnInit {
     ];
 
     // Medical Record System Contract Address
-    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
+    const address = '0x8eb87a89b62cfb3e3d911bffeab2761e99b6c253';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {
@@ -340,6 +342,7 @@ export class NavComponent implements OnInit {
           console.log(error);
           console.log(result);
           if (result === true) {
+              this.getMRA.nID = this.form.Id;
            // this.getMRA.getMedicalRecordAddress(this.form.Id);
             this.router.navigateByUrl('/profile');
           } else {

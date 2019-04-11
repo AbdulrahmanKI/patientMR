@@ -13,16 +13,36 @@ export class ProfileComponent implements OnInit {
 
     ngOnInit() {
     console.log('hello');
-       this.getMRA.getMedicalRecordAddress(123456789);
-      // console.log(this.getMRA.getD());
-     //console.log();
-   //this.getMRA.getPatientMedicalRecordData();
+       this.getMRA.getMedicalRecordAddress(this.getMRA.nID);
+
+
+
+
   }
 
-    isLoaded(){
-       // this.getMRA.getPatientMedicalRecordData();
-        return true;
+    flagBloodDonation:boolean = false;
+    flagDiagnosis:boolean = false;
+    flagSurgery:boolean = false;
 
+    displayBloodDonation(){
+        this.getMRA.getBloodDonation()
+        this.flagBloodDonation = true;
+        this.flagDiagnosis = false;
+        this.flagSurgery = false;
+    }
+
+    displayDiagnosises(){
+        this.getMRA.getDiagnosises();
+        this.flagDiagnosis = true;
+        this.flagBloodDonation =false;
+        this.flagSurgery = false;
+    }
+
+    displaySurgerises(){
+        this.getMRA.getSurgeries();
+        this.flagDiagnosis = false;
+        this.flagBloodDonation =false;
+        this.flagSurgery = true;
     }
 
 

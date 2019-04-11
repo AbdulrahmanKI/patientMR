@@ -38,10 +38,9 @@ ul.topnav li.right {
 
 
 body{
-    display: inline-flex;
     margin: 0;
     width: 100%;
-    height: 100%;
+    height: 650px;
     background-color: whitesmoke;
 
 
@@ -76,23 +75,23 @@ a{
 
 .content{
     display: inline-flex;
-    margin: 58px 5px 5px 255px ;
+    margin: 58px 5px 5px 270px ;
     height: 190px;
     border-bottom: 1px solid gray;
-    width: 100%;
+    width: 75%;
 
 
 }
 
 
 /* On mouse-over, add a deeper shadow */
-#Prescription:hover , #Diagnosis:hover {
+#Prescription:hover , #Diagnosis:hover ,#surgery:hover , #labTest:hover,#bloodDonation:hover , #radiology:hover{
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 label.cont ,a{
     display: block;
-    margin: 15px;
+    margin: 15px ;
     font-size: 20px;
 }
 
@@ -136,14 +135,82 @@ label.cont{
  }
 
 #bloodDonation {
+     width: 100px;
+     height: 100px;
+     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+     border-radius: 12px;
+     background-image: url("~src/assets/blood.png") ;
+     background-size: 100px;
+ }
+
+#radiology {
     width: 100px;
     height: 100px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
     border-radius: 12px;
-    background-image: url("~src/assets/blood.png") ;
+    background-image: url("~src/assets/x-rays.png") ;
     background-size: 100px;
 }
 
-div.sideNavLabel{
+#bloodDonationTable{
+     display: inline-flex;
+     margin: 58px 5px 0 290px ;
+     height: 190px;
+     width: 75%;
 
+     border-collapse: collapse;
+ }
+
+#bloodDonationTable td, #bloodDonationTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#bloodDonationTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #af1f23;
+    color: white;
+}
+
+#DiagnosisTable{
+    display: inline-flex;
+    margin: 58px 5px 0 290px ;
+    height: 190px;
+    width: 75%;
+
+    border-collapse: collapse;
+}
+
+#DiagnosisTable td, #DiagnosisTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#DiagnosisTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #FC7F59;
+    color: white;
+}
+
+#SurgeryTable{
+    display: inline-flex;
+    margin: 58px 5px 0 290px ;
+    height: 190px;
+    width: 75%;
+
+    border-collapse: collapse;
+}
+
+#SurgeryTable td, #SurgeryTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+#SurgeryTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #FC7F59;
+    color: white;
 }
