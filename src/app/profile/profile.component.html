@@ -76,7 +76,7 @@
     </div>
     <div>
         <label class="cont" for="Correction">Correction</label>
-        <a (click)="displayRadiology()" id="Correction"></a>
+        <a (click)="Correction()" id="Correction"></a>
     </div>
 
 </div>
@@ -210,13 +210,36 @@
                     <th>Drug Name</th>
                     <th>Quantity</th>
                     <th>Doctor Comment</th>
+                    <th>is Dispensed</th>
                 </tr>
                 <tr>
                   <td>{{drug['drugName']}}</td>
                     <td>{{drug['quantity']}}</td>
                     <td>{{drug['doctorComment']}}</td>
+                    <td>{{drug['isDispensed']}}</td>
                 </tr>
             </table>
+        </table>
+
+        <table id="CorrectionTable" *ngIf="flagCorrection" >
+            <tr>
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Laboratory Worker</th>
+                <th>Test Type</th>
+                <th>Laboratory Test Description</th>
+                <th>Date</th>
+                <th>Photo</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.P_LabTest;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.P_LabTest[i]['hospitalName']}}</td>
+                <td>{{getMRA.P_LabTest[i]['laboratoryWorkerName']}}</td>
+                <td>{{getMRA.P_LabTest[i]['testType']}}</td>
+                <td>{{getMRA.P_LabTest[i]['laboratoryTestDescription']}}</td>
+                <td>{{getMRA.P_LabTest[i]['date'] *1000| date }}</td>
+                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
+            </tr>
         </table>
 
 

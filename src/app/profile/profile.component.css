@@ -152,6 +152,15 @@ label.cont{
     background-size: 100px;
 }
 
+#Correction {
+    width: 100px;
+    height: 100px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    border-radius: 12px;
+    background-image: url("~src/assets/correction.png") ;
+    background-size: 100px;
+}
+
 #bloodDonationTable{
      display: inline-flex;
      margin: 58px 5px 0 290px ;

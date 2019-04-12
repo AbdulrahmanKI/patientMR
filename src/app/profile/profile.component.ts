@@ -24,7 +24,7 @@ export class ProfileComponent implements OnInit {
     flagRadiology:boolean = false;
     flagLabTest:boolean = false;
     flagDrugList:boolean = false;
-
+    flagCorrection:boolean = false;
 
     displayBloodDonation(){
         this.getMRA.getBloodDonation()
@@ -35,6 +35,7 @@ export class ProfileComponent implements OnInit {
         this.flagRadiology = false;
         this.flagLabTest = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displayDiagnosises(){
@@ -46,6 +47,7 @@ export class ProfileComponent implements OnInit {
         this.flagRadiology = false;
         this.flagLabTest = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displaySurgerises(){
@@ -57,6 +59,7 @@ export class ProfileComponent implements OnInit {
         this.flagRadiology = false;
         this.flagLabTest = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displayRadiology(){
@@ -68,6 +71,7 @@ export class ProfileComponent implements OnInit {
         this.flagDrugPrescribtion = false;
         this.flagLabTest = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displayDrugPrescribtion(){
@@ -79,6 +83,7 @@ export class ProfileComponent implements OnInit {
         this.flagRadiology = false;
         this.flagLabTest = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displayLabTest(){
@@ -90,14 +95,28 @@ export class ProfileComponent implements OnInit {
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
         this.flagDrugList = false;
+        this.flagCorrection = false;
     }
 
     displayDrugList(i){
         //this.drug = JSON.parse(this.getMRA.P_drugPrescribtions[i]['drugList']);
-      this.drug = JSON.parse('{"drugName":"panadol","quantity":1,"doctorComment":"5 time per days"}');
+      this.drug = JSON.parse('{"drugName":"panadol","quantity":1,"doctorComment":"5 time per days","isDispensed":"true"}');
        this.flagDrugList = !this.flagDrugList;
 
 
+    }
+
+    Correction(){
+        this.getMRA.getCorrection();
+        console.log(this.getMRA.Correction);
+        this.flagCorrection = true;
+        this.flagBloodDonation = false;
+        this.flagDiagnosis = false;
+        this.flagSurgery = false;
+        this.flagDrugPrescribtion = false;
+        this.flagRadiology = false;
+        this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
 
