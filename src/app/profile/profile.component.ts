@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit {
     ngOnInit() {
     console.log('hello');
        this.getMRA.getMedicalRecordAddress(this.getMRA.nID);
+
   }
 
     flagBloodDonation:boolean = false;
@@ -108,6 +109,7 @@ export class ProfileComponent implements OnInit {
 
     Correction(){
         this.getMRA.getCorrection();
+
         this.flagCorrection = true;
         this.flagBloodDonation = false;
         this.flagDiagnosis = false;

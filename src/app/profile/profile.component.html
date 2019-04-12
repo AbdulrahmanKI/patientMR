@@ -205,8 +205,7 @@
                 <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
             </tr>
 
-
-                <table id="drugTable" *ngIf="flagDrugList">
+                <tbody id="drugTable" *ngIf="flagDrugList">
                 <tr>
                     <th>Drug Name</th>
                     <th>Quantity</th>
@@ -217,9 +216,9 @@
                   <td>{{drug['drugName']}}</td>
                     <td>{{drug['quantity']}}</td>
                     <td>{{drug['doctorComment']}}</td>
-                    <td>{{drug['isDispensed']}}</td>
+                    <td style="text-transform: uppercase">{{drug['isDispensed']}}</td>
                 </tr>
-                </table>
+                </tbody>
 
         </table>
 
@@ -239,8 +238,24 @@
                 <td>{{getMRA.Correction_drug[i]['doctorName']}}</td>
                 <td >{{getMRA.Correction_drug[i]['date'] *1000| date }}</td>
                 <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
-                <td>{{getMRA.Correction_drug[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_drug[i]['isCorrectionFor']}}</td>
             </tr>
+
+
+            <tr  *ngIf="flagDrugList" >
+                <th style="background-color: #56585b">Drug Name</th>
+                <th style="background-color: #56585b">Quantity</th>
+                <th style="background-color: #56585b">Doctor Comment</th>
+                <th style="background-color: #56585b">is Dispensed</th>
+            </tr>
+
+            <tr *ngIf="flagDrugList" >
+                <td>{{drug['drugName']}}</td>
+                <td>{{drug['quantity']}}</td>
+                <td>{{drug['doctorComment']}}</td>
+                <td style="text-transform: uppercase">{{drug['isDispensed']}}</td>
+            </tr>
+
 
             <hr>
             <tr *ngIf="getMRA.flagCorrectionDiagnosises">
@@ -257,7 +272,7 @@
                 <td>{{getMRA.Correction_Diagnosises[i]['doctorName']}}</td>
                 <td>{{getMRA.Correction_Diagnosises[i]['diognosisDescription']}}</td>
                 <td >{{getMRA.Correction_Diagnosises[i]['date'] *1000| date }}</td>
-                <td>{{getMRA.Correction_Diagnosises[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_Diagnosises[i]['isCorrectionFor']}}</td>
             </tr>
 
             <hr>
@@ -281,7 +296,7 @@
                 <td>{{getMRA.Correction_surgery[i]['duration']}}</td>
                 <td>{{getMRA.Correction_surgery[i]['surgeryInformation']}}</td>
                 <td>{{getMRA.Correction_surgery[i]['date'] *1000| date }}</td>
-                <td>{{getMRA.Correction_surgery[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_surgery[i]['isCorrectionFor']}}</td>
             </tr>
 
             <hr>
@@ -304,7 +319,7 @@
                 <td>{{getMRA.Correction_labTest[i]['laboratoryTestDescription']}}</td>
                 <td>{{getMRA.Correction_labTest[i]['date'] *1000| date }}</td>
                 <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_labTest[i]['testHash']}}" target="_blank">Preview</a></td>
-                <td>{{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>
             </tr>
 
             <hr>
@@ -325,7 +340,7 @@
                 <td>{{getMRA.Correction_BloodDonation[i]['donationType']}}</td>
                 <td >{{getMRA.Correction_BloodDonation[i]['date'] *1000| date }}</td>
                 <td>{{getMRA.Correction_BloodDonation[i]['amount'] /1000 }}</td>
-                <td>{{getMRA.Correction_BloodDonation[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_BloodDonation[i]['isCorrectionFor']}}</td>
             </tr>
 
             <hr>
@@ -348,11 +363,12 @@
                 <td>{{getMRA.Correction_Radiology[i]['description']}}</td>
                 <td>{{getMRA.Correction_Radiology[i]['date'] *1000| date }}</td>
                 <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_Radiology[i]['fileHash']}}" target="_blank">Preview</a></td>
-                <td>{{getMRA.Correction_Radiology[i]['isCorrectionFor']}}</td>
+                <td style="text-transform: uppercase">{{getMRA.Correction_Radiology[i]['isCorrectionFor']}}</td>
             </tr>
 
 
         </table>
+
 
 
     <!--<img src="https://image-hasher-wadahesam.c9users.io/storage/files/29dc7a2e4c2b8a6cba6764783c0f4218.jpg">-->
