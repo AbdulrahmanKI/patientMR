@@ -34,7 +34,19 @@ export class GetMRAService {
   private radiologiesCount;
   public P_LabTest = [];
   private LabTestCount;
-  public Correction = [];
+  public Correction_drug = [];
+    public Correction_surgery = [];
+    public Correction_labTest = [];
+    public Correction_BloodDonation = [];
+    public Correction_Radiology = [];
+    public Correction_Diagnosises = [];
+
+    public flagCorrectionDrug:boolean = false;
+    public flagCorrectionSurgery:boolean = false;
+    public flagCorrectionLabTest:boolean = false;
+    public flagCorrectionBloodDonation:boolean = false;
+    public flagCorrectionRadiology:boolean = false;
+    public flagCorrectionDiagnosises:boolean = false;
 
     constructor() { }
 
@@ -10963,7 +10975,6 @@ export class GetMRAService {
       }
 
      async getCorrection(){
-        let counter = 0;
 
          const ABI_PatientMR = [
              {
@@ -11801,11 +11812,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.drugPrescribtionsCount ; i++){
                 mycontract.methods.drugPrescribtions(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_drug[i] =  result;
                     else
                         console.log(error);
                 });
             }
+            this.flagCorrectionDrug = true;
 
         }
 
@@ -11814,12 +11826,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.radiologiesCount ; i++){
                 mycontract.methods.radiologies(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_Radiology[i] =  result;
                     else
                         console.log(error);
                 });
             }
-
+            this.flagCorrectionRadiology = true;
         }
 
         if(this.surgeriesCount > 0){
@@ -11827,11 +11839,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.surgeriesCount ; i++){
                 mycontract.methods.surgeries(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_surgery[i] =  result;
                     else
                         console.log(error);
                 });
             }
+            this.flagCorrectionSurgery = true;
         }
 
         if(this.BloodDonationCount > 0){
@@ -11839,11 +11852,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.BloodDonationCount ; i++){
                 mycontract.methods.bloodDonations(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_BloodDonation[i] =  result;
                     else
                         console.log(error);
                 });
             }
+            this.flagCorrectionBloodDonation = true;
         }
 
         if(this.LabTestCount > 0){
@@ -11851,11 +11865,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.LabTestCount ; i++){
                 mycontract.methods.laboratoryTests(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_labTest[i] =  result;
                     else
                         console.log(error);
                 });
             }
+            this.flagCorrectionLabTest = true;
         }
 
         if(this.diagnosisesCount > 0){
@@ -11863,11 +11878,12 @@ export class GetMRAService {
             for (let i =0 ; i< this.diagnosisesCount ; i++){
                 mycontract.methods.diagnosises(i).call({from: this.Hospital_Address},(error , result) => {
                     if(result['isCorrectionFor'] > 0 || result['isCorrectionFor'] == 'true' )
-                        this.Correction[counter++] =  result;
+                        this.Correction_Diagnosises[i] =  result;
                     else
                         console.log(error);
                 });
             }
+            this.flagCorrectionDiagnosises = true;
         }
 
          await new Promise(resolve => setTimeout(

@@ -108,7 +108,6 @@ export class ProfileComponent implements OnInit {
 
     Correction(){
         this.getMRA.getCorrection();
-        console.log(this.getMRA.Correction);
         this.flagCorrection = true;
         this.flagBloodDonation = false;
         this.flagDiagnosis = false;

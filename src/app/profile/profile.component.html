@@ -205,7 +205,8 @@
                 <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
             </tr>
 
-            <table id="drugTable" *ngIf="flagDrugList">
+
+                <table id="drugTable" *ngIf="flagDrugList">
                 <tr>
                     <th>Drug Name</th>
                     <th>Quantity</th>
@@ -218,11 +219,74 @@
                     <td>{{drug['doctorComment']}}</td>
                     <td>{{drug['isDispensed']}}</td>
                 </tr>
-            </table>
+                </table>
+
         </table>
 
+
         <table id="CorrectionTable" *ngIf="flagCorrection" >
-            <tr>
+            <tr *ngIf="getMRA.flagCorrectionDrug">
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Drug List</th>
+                <th>isCorrectionFor</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.Correction_drug;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.Correction_drug[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_drug[i]['doctorName']}}</td>
+                <td >{{getMRA.Correction_drug[i]['date'] *1000| date }}</td>
+                <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
+                <td>{{getMRA.Correction_drug[i]['isCorrectionFor']}}</td>
+            </tr>
+
+            <hr>
+            <tr *ngIf="getMRA.flagCorrectionDiagnosises">
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Doctor</th>
+                <th>Diagnosis Description</th>
+                <th>Date</th>
+                <th>isCorrectionFor</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.Correction_Diagnosises;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.Correction_Diagnosises[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_Diagnosises[i]['doctorName']}}</td>
+                <td>{{getMRA.Correction_Diagnosises[i]['diognosisDescription']}}</td>
+                <td >{{getMRA.Correction_Diagnosises[i]['date'] *1000| date }}</td>
+                <td>{{getMRA.Correction_Diagnosises[i]['isCorrectionFor']}}</td>
+            </tr>
+
+            <hr>
+
+            <tr *ngIf="getMRA.flagCorrectionSurgery">
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Main Doctor</th>
+                <th>surgeryName</th>
+                <th>duration in minutes</th>
+                <th>Surgery Information</th>
+                <th>Date</th>
+                <th>isCorrectionFor</th>
+
+            </tr>
+            <tr *ngFor="let e of getMRA.Correction_surgery;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.Correction_surgery[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_surgery[i]['mainDoctor']}}</td>
+                <td>{{getMRA.Correction_surgery[i]['surgeryName']}}</td>
+                <td>{{getMRA.Correction_surgery[i]['duration']}}</td>
+                <td>{{getMRA.Correction_surgery[i]['surgeryInformation']}}</td>
+                <td>{{getMRA.Correction_surgery[i]['date'] *1000| date }}</td>
+                <td>{{getMRA.Correction_surgery[i]['isCorrectionFor']}}</td>
+            </tr>
+
+            <hr>
+
+            <tr *ngIf="getMRA.flagCorrectionLabTest">
                 <th>ID</th>
                 <th>Hospital</th>
                 <th>Laboratory Worker</th>
@@ -230,16 +294,64 @@
                 <th>Laboratory Test Description</th>
                 <th>Date</th>
                 <th>Photo</th>
+                <th>isCorrectionFor</th>
             </tr>
-            <tr *ngFor="let e of getMRA.P_LabTest;let i = index">
+            <tr *ngFor="let e of getMRA.Correction_labTest;let i = index">
                 <td>{{i+1}}</td>
-                <td>{{getMRA.P_LabTest[i]['hospitalName']}}</td>
-                <td>{{getMRA.P_LabTest[i]['laboratoryWorkerName']}}</td>
-                <td>{{getMRA.P_LabTest[i]['testType']}}</td>
-                <td>{{getMRA.P_LabTest[i]['laboratoryTestDescription']}}</td>
-                <td>{{getMRA.P_LabTest[i]['date'] *1000| date }}</td>
-                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
+                <td>{{getMRA.Correction_labTest[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_labTest[i]['laboratoryWorkerName']}}</td>
+                <td>{{getMRA.Correction_labTest[i]['testType']}}</td>
+                <td>{{getMRA.Correction_labTest[i]['laboratoryTestDescription']}}</td>
+                <td>{{getMRA.Correction_labTest[i]['date'] *1000| date }}</td>
+                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_labTest[i]['testHash']}}" target="_blank">Preview</a></td>
+                <td>{{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>
             </tr>
+
+            <hr>
+
+            <tr *ngIf="getMRA.flagCorrectionBloodDonation">
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Doctor</th>
+                <th>DonationType</th>
+                <th>Date</th>
+                <th>Amount (L)</th>
+                <th>isCorrectionFor</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.Correction_BloodDonation;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.Correction_BloodDonation[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_BloodDonation[i]['doctorName']}}</td>
+                <td>{{getMRA.Correction_BloodDonation[i]['donationType']}}</td>
+                <td >{{getMRA.Correction_BloodDonation[i]['date'] *1000| date }}</td>
+                <td>{{getMRA.Correction_BloodDonation[i]['amount'] /1000 }}</td>
+                <td>{{getMRA.Correction_BloodDonation[i]['isCorrectionFor']}}</td>
+            </tr>
+
+            <hr>
+
+            <tr *ngIf="getMRA.flagCorrectionRadiology">
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Radiologist</th>
+                <th>Radiology Type</th>
+                <th>description</th>
+                <th>Date</th>
+                <th>Photo</th>
+                <th>isCorrectionFor</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.Correction_Radiology;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.Correction_Radiology[i]['hospitalName']}}</td>
+                <td>{{getMRA.Correction_Radiology[i]['radiologist']}}</td>
+                <td>{{getMRA.Correction_Radiology[i]['radiologyType']}}</td>
+                <td>{{getMRA.Correction_Radiology[i]['description']}}</td>
+                <td>{{getMRA.Correction_Radiology[i]['date'] *1000| date }}</td>
+                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_Radiology[i]['fileHash']}}" target="_blank">Preview</a></td>
+                <td>{{getMRA.Correction_Radiology[i]['isCorrectionFor']}}</td>
+            </tr>
+
+
         </table>
 
 
