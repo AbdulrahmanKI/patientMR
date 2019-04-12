@@ -74,6 +74,10 @@
         <label class="cont" for="radiology">Radiology</label>
         <a (click)="displayRadiology()" id="radiology"></a>
     </div>
+    <div>
+        <label class="cont" for="Correction">Correction</label>
+        <a (click)="displayRadiology()" id="Correction"></a>
+    </div>
 
 </div>
 
@@ -183,6 +187,36 @@
                 <td>{{getMRA.P_LabTest[i]['date'] *1000| date }}</td>
                 <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
             </tr>
+        </table>
+
+        <table id="PrescribtionTable" *ngIf="flagDrugPrescribtion" >
+            <tr>
+                <th>ID</th>
+                <th>Hospital</th>
+                <th>Doctor</th>
+                <th>Date</th>
+                <th>Drug List</th>
+            </tr>
+            <tr *ngFor="let e of getMRA.P_drugPrescribtions;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{getMRA.P_drugPrescribtions[i]['hospitalName']}}</td>
+                <td>{{getMRA.P_drugPrescribtions[i]['doctorName']}}</td>
+                <td >{{getMRA.P_drugPrescribtions[i]['date'] *1000| date }}</td>
+                <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
+            </tr>
+
+            <table id="drugTable" *ngIf="flagDrugList">
+                <tr>
+                    <th>Drug Name</th>
+                    <th>Quantity</th>
+                    <th>Doctor Comment</th>
+                </tr>
+                <tr>
+                  <td>{{drug['drugName']}}</td>
+                    <td>{{drug['quantity']}}</td>
+                    <td>{{drug['doctorComment']}}</td>
+                </tr>
+            </table>
         </table>
 
 

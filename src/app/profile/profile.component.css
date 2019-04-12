@@ -257,8 +257,29 @@ label.cont{
     color: white;
 }
 
+#PrescribtionTable{
+    display: inline-flex;
+    margin: 58px 5px 0 290px ;
+    height: 190px;
+    width: 75%;
 
-a.preview:link,a.preview:visited {
+    border-collapse: collapse;
+}
+
+#PrescribtionTable td, #PrescribtionTable th {
+    border: 1px solid #ddd;
+    padding: 4px;
+}
+
+#PrescribtionTable th {
+    padding-top: 12px;
+    text-align: left;
+    background-color: #F4B459;
+    color: white;
+}
+
+
+a.preview:link, a.preview:visited {
     background-color: #cc0000;
     color: white;
     padding: 7px 12px;
@@ -269,5 +290,21 @@ a.preview:link,a.preview:visited {
 
 a.preview:hover {
     background-color: #e30000;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+
+#drugTable th{
+    background-color: #56585b;
+}
+
+.drugList{
+    background-color: #ffbc5c;
+    padding: 7px 12px;
+    color: white;
+}
+
+.drugList:hover {
+    background-color: #ffd1a7;
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }

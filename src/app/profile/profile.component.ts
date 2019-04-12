@@ -9,15 +9,12 @@ import {GetMRAService} from '../get-mra.service';
 })
 export class ProfileComponent implements OnInit {
 
+    public drug;
   constructor(private getMRA: GetMRAService) { }
 
     ngOnInit() {
     console.log('hello');
        this.getMRA.getMedicalRecordAddress(this.getMRA.nID);
-
-
-
-
   }
 
     flagBloodDonation:boolean = false;
@@ -26,6 +23,7 @@ export class ProfileComponent implements OnInit {
     flagDrugPrescribtion:boolean = false;
     flagRadiology:boolean = false;
     flagLabTest:boolean = false;
+    flagDrugList:boolean = false;
 
 
     displayBloodDonation(){
@@ -36,6 +34,7 @@ export class ProfileComponent implements OnInit {
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
         this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
     displayDiagnosises(){
@@ -46,6 +45,7 @@ export class ProfileComponent implements OnInit {
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
         this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
     displaySurgerises(){
@@ -56,6 +56,7 @@ export class ProfileComponent implements OnInit {
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
         this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
     displayRadiology(){
@@ -66,6 +67,7 @@ export class ProfileComponent implements OnInit {
         this.flagSurgery = false;
         this.flagDrugPrescribtion = false;
         this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
     displayDrugPrescribtion(){
@@ -76,6 +78,7 @@ export class ProfileComponent implements OnInit {
         this.flagSurgery = false;
         this.flagRadiology = false;
         this.flagLabTest = false;
+        this.flagDrugList = false;
     }
 
     displayLabTest(){
@@ -86,6 +89,14 @@ export class ProfileComponent implements OnInit {
         this.flagSurgery = false;
         this.flagDrugPrescribtion = false;
         this.flagRadiology = false;
+        this.flagDrugList = false;
+    }
+
+    displayDrugList(i){
+        //this.drug = JSON.parse(this.getMRA.P_drugPrescribtions[i]['drugList']);
+      this.drug = JSON.parse('{"drugName":"panadol","quantity":1,"doctorComment":"5 time per days"}');
+       this.flagDrugList = !this.flagDrugList;
+
 
     }
 
