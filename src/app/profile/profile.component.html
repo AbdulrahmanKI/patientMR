@@ -185,7 +185,9 @@
                 <td>{{getMRA.P_LabTest[i]['testType']}}</td>
                 <td>{{getMRA.P_LabTest[i]['laboratoryTestDescription']}}</td>
                 <td>{{getMRA.P_LabTest[i]['date'] *1000| date }}</td>
-                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
+                <td><a class="preview" href="https://image-hasher-wadahesam.c9users.io/storage/files/{{getMRA.P_LabTest[i]['testHash']}}" target="_blank">Preview</a></td>
+                <!--http://localhost:4200/assets/Img_test/-->
+
             </tr>
         </table>
 
@@ -212,16 +214,15 @@
                     <th>Doctor Comment</th>
                     <th>is Dispensed</th>
                 </tr>
-                <tr>
-                  <td>{{drug['drugName']}}</td>
-                    <td>{{drug['quantity']}}</td>
-                    <td>{{drug['doctorComment']}}</td>
-                    <td style="text-transform: uppercase">{{drug['isDispensed']}}</td>
+                <tr *ngFor="let d of drug ; let i = index">
+                  <td>{{drug[i]['drugName']}}</td>
+                    <td>{{drug[i]['quantity']}}</td>
+                    <td>{{drug[i]['doctorComment']}}</td>
+                    <td style="text-transform: uppercase">{{drug[i]['isDispensed']}}</td>
                 </tr>
                 </tbody>
 
         </table>
-
 
         <table id="CorrectionTable" *ngIf="flagCorrection" >
             <tr *ngIf="getMRA.flagCorrectionDrug">

@@ -48,7 +48,7 @@ body{
     border-right: 1px solid gray ;
     padding: 5px;
     margin: 58px 0 0 0 ;
-    background-color: #ffdee8;
+    background-color: #ffeee9;
     width: 242px;
     position: fixed;
     height: 100%;
@@ -64,7 +64,7 @@ label{
 label.labelLeft{
     padding: 5px;
     font-size: 20px;
-    border: 1px solid whitesmoke;
+    border: 1px solid #919191;
 }
 
 a{
@@ -336,13 +336,5 @@ a.preview:hover {
     text-align: left;
     background-color: #947cf4;
     color: white;
-}
-
-.isNumber{
-    background-color: #00ff80;
-}
-
-.isTrue{
-    background-color: lightslategray;
 }
 

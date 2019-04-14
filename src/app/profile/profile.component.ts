@@ -100,8 +100,8 @@ export class ProfileComponent implements OnInit {
     }
 
     displayDrugList(i){
-        //this.drug = JSON.parse(this.getMRA.P_drugPrescribtions[i]['drugList']);
-      this.drug = JSON.parse('{"drugName":"panadol","quantity":1,"doctorComment":"5 time per days","isDispensed":"true"}');
+        this.drug = JSON.parse(this.getMRA.P_drugPrescribtions[i]['drugList']);
+      //this.drug = JSON.parse('{"drugName":"panadol","quantity":1,"doctorComment":"5 time per days","isDispensed":"true"}');
        this.flagDrugList = !this.flagDrugList;
 
 
