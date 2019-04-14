@@ -226,6 +226,7 @@
         <table id="CorrectionTable" *ngIf="flagCorrection" >
             <tr *ngIf="getMRA.flagCorrectionDrug">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Doctor</th>
                 <th>Date</th>
@@ -233,12 +234,20 @@
                 <th>isCorrectionFor</th>
             </tr>
             <tr *ngFor="let e of getMRA.Correction_drug;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_drug[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_drug[i]['doctorName']}}</td>
-                <td >{{getMRA.Correction_drug[i]['date'] *1000| date }}</td>
-                <td><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_drug[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_drug[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_drug[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_drug[i]['doctorName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_drug[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                ><a (click)="displayDrugList(i)" class="drugList">Drug List</a></td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_drug[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                        style="text-transform: uppercase">{{getMRA.Correction_drug[i]['isCorrectionFor']}}</td>
             </tr>
 
 
@@ -260,6 +269,7 @@
             <hr>
             <tr *ngIf="getMRA.flagCorrectionDiagnosises">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Doctor</th>
                 <th>Diagnosis Description</th>
@@ -267,18 +277,29 @@
                 <th>isCorrectionFor</th>
             </tr>
             <tr *ngFor="let e of getMRA.Correction_Diagnosises;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_Diagnosises[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_Diagnosises[i]['doctorName']}}</td>
-                <td>{{getMRA.Correction_Diagnosises[i]['diognosisDescription']}}</td>
-                <td >{{getMRA.Correction_Diagnosises[i]['date'] *1000| date }}</td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_Diagnosises[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Diagnosises[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Diagnosises[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Diagnosises[i]['doctorName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Diagnosises[i]['diognosisDescription']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Diagnosises[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Diagnosises[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                        style="text-transform: uppercase">{{getMRA.Correction_Diagnosises[i]['isCorrectionFor']}}</td>
+
+
             </tr>
 
             <hr>
 
             <tr *ngIf="getMRA.flagCorrectionSurgery">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Main Doctor</th>
                 <th>surgeryName</th>
@@ -289,20 +310,31 @@
 
             </tr>
             <tr *ngFor="let e of getMRA.Correction_surgery;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_surgery[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_surgery[i]['mainDoctor']}}</td>
-                <td>{{getMRA.Correction_surgery[i]['surgeryName']}}</td>
-                <td>{{getMRA.Correction_surgery[i]['duration']}}</td>
-                <td>{{getMRA.Correction_surgery[i]['surgeryInformation']}}</td>
-                <td>{{getMRA.Correction_surgery[i]['date'] *1000| date }}</td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_surgery[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['mainDoctor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['surgeryName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['duration']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['surgeryInformation']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_surgery[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_surgery[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                        style="text-transform: uppercase">{{getMRA.Correction_surgery[i]['isCorrectionFor']}}</td>
             </tr>
 
             <hr>
 
             <tr *ngIf="getMRA.flagCorrectionLabTest">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Laboratory Worker</th>
                 <th>Test Type</th>
@@ -312,20 +344,35 @@
                 <th>isCorrectionFor</th>
             </tr>
             <tr *ngFor="let e of getMRA.Correction_labTest;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_labTest[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_labTest[i]['laboratoryWorkerName']}}</td>
-                <td>{{getMRA.Correction_labTest[i]['testType']}}</td>
-                <td>{{getMRA.Correction_labTest[i]['laboratoryTestDescription']}}</td>
-                <td>{{getMRA.Correction_labTest[i]['date'] *1000| date }}</td>
-                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_labTest[i]['testHash']}}" target="_blank">Preview</a></td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['laboratoryWorkerName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['testType']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['laboratoryTestDescription']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_labTest[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                ><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_labTest[i]['testHash']}}" target="_blank">Preview</a></td>
+                <!--<td style="text-transform: uppercase">{{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>-->
+                <td style="text-transform: uppercase"
+                    [ngStyle]="{'background-color': getMRA.Correction_labTest[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                    >
+                    {{getMRA.Correction_labTest[i]['isCorrectionFor']}}</td>
             </tr>
+
 
             <hr>
 
             <tr *ngIf="getMRA.flagCorrectionBloodDonation">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Doctor</th>
                 <th>DonationType</th>
@@ -334,19 +381,30 @@
                 <th>isCorrectionFor</th>
             </tr>
             <tr *ngFor="let e of getMRA.Correction_BloodDonation;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_BloodDonation[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_BloodDonation[i]['doctorName']}}</td>
-                <td>{{getMRA.Correction_BloodDonation[i]['donationType']}}</td>
-                <td >{{getMRA.Correction_BloodDonation[i]['date'] *1000| date }}</td>
-                <td>{{getMRA.Correction_BloodDonation[i]['amount'] /1000 }}</td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_BloodDonation[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['doctorName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['donationType']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_BloodDonation[i]['amount'] /1000 }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_BloodDonation[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                        style="text-transform: uppercase">{{getMRA.Correction_BloodDonation[i]['isCorrectionFor']}}</td>
+
             </tr>
 
             <hr>
 
             <tr *ngIf="getMRA.flagCorrectionRadiology">
                 <th>ID</th>
+                <th>Blockchain ID</th>
                 <th>Hospital</th>
                 <th>Radiologist</th>
                 <th>Radiology Type</th>
@@ -356,14 +414,24 @@
                 <th>isCorrectionFor</th>
             </tr>
             <tr *ngFor="let e of getMRA.Correction_Radiology;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{getMRA.Correction_Radiology[i]['hospitalName']}}</td>
-                <td>{{getMRA.Correction_Radiology[i]['radiologist']}}</td>
-                <td>{{getMRA.Correction_Radiology[i]['radiologyType']}}</td>
-                <td>{{getMRA.Correction_Radiology[i]['description']}}</td>
-                <td>{{getMRA.Correction_Radiology[i]['date'] *1000| date }}</td>
-                <td><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_Radiology[i]['fileHash']}}" target="_blank">Preview</a></td>
-                <td style="text-transform: uppercase">{{getMRA.Correction_Radiology[i]['isCorrectionFor']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{i+1}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['id']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['hospitalName']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['radiologist']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['radiologyType']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['description']}}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                >{{getMRA.Correction_Radiology[i]['date'] *1000| date }}</td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                ><a class="preview" href="http://localhost:4200/assets/Img_test/{{getMRA.Correction_Radiology[i]['fileHash']}}" target="_blank">Preview</a></td>
+                <td [ngStyle]="{'background-color': getMRA.Correction_Radiology[i]['isCorrectionFor'] != '\'true\'' ?  '#00ff80' : 'lightslategray' + ')'}"
+                        style="text-transform: uppercase">{{getMRA.Correction_Radiology[i]['isCorrectionFor']}}</td>
             </tr>
 
 

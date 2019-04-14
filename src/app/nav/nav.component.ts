@@ -327,7 +327,7 @@ export class NavComponent implements OnInit {
     ];
 
     // Medical Record System Contract Address
-    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
+    const address = '0xb14889d951b0033705f3c9ce8b52a469096b2da6';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {

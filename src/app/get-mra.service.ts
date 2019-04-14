@@ -54,6 +54,8 @@ export class GetMRAService {
     public flagCorrectionRadiology:boolean = false;
     public flagCorrectionDiagnosises:boolean = false;
 
+    public CorrectionColor;
+
     constructor() { }
 
     getMedicalRecordAddress(id: number) {
@@ -347,7 +349,7 @@ export class GetMRAService {
     ];
 
     // Medical Record System Contract P_Address
-    const address = '0x6a4eb469cc35f57069c81c24c463fae91e13b76b';
+    const address = '0xb14889d951b0033705f3c9ce8b52a469096b2da6';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {
@@ -11845,8 +11847,11 @@ export class GetMRAService {
                     if (result['isCorrectionFor'] > 0) {
                         this.getIdCorrectionForSurgery(result['isCorrectionFor']);
                         await new Promise(resolve => setTimeout(() => resolve(), 200));
-                        if (this.N_Correction_surgery['id'] == result['isCorrectionFor'])
+                        if (this.N_Correction_surgery['id'] == result['isCorrectionFor']){
                             this.Correction_surgery[counter++] = this.N_Correction_surgery;
+                            this.CorrectionColor = "#00ff80";
+                        }
+
                     } else
                         console.log(error);
                 });

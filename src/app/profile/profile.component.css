@@ -34,6 +34,13 @@ ul.topnav li.right {
 
 }
 
+body{
+    margin: 0;
+    width: 100%;
+    height: 100%;
+
+}
+
 
 
 
@@ -321,6 +328,7 @@ a.preview:hover {
 #CorrectionTable td, #CorrectionTable th {
     border: 1px solid #ddd;
     padding: 4px;
+    background-color: lightgrey;
 }
 
 #CorrectionTable th {
@@ -330,4 +338,11 @@ a.preview:hover {
     color: white;
 }
 
+.isNumber{
+    background-color: #00ff80;
+}
+
+.isTrue{
+    background-color: lightslategray;
+}
 
