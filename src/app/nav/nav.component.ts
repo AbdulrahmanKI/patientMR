@@ -13,7 +13,7 @@ import {GetMRAService} from '../get-mra.service';
 })
 export class NavComponent implements OnInit {
 
-    private Hospital_Address = '0xBF8091555d8ced0C0da7bb6d4913dB22d68e0341';
+    private Hospital_Address = '0x8E77a7877d120D18256900D9a52BbE1fD2D46d3b';
 
   constructor(
       private alert: AlertsService,
@@ -327,7 +327,7 @@ export class NavComponent implements OnInit {
     ];
 
     // Medical Record System Contract Address
-    const address = '0xb14889d951b0033705f3c9ce8b52a469096b2da6';
+    const address = '0x9C25b007F814CDfEdDBe9DeBECd42c4C84DC01B2';
 
 
     const mycontract = new web3.eth.Contract(ABI, address , {

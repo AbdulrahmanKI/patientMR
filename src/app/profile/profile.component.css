@@ -255,6 +255,7 @@ label.cont{
 #LabTestTable td, #LabTestTable th {
     border: 1px solid #ddd;
     padding: 4px;
+
 }
 
 #LabTestTable th {
@@ -302,6 +303,10 @@ a.preview:hover {
 
 
 #drugTable th{
+    background-color: #56585b;
+}
+
+#drugTable1 th{
     background-color: #56585b;
 }
 
